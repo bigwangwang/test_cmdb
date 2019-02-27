@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加主机</title>
+</head>
+<body>
+
+<h4>添加主机</h4>
+<form method="post" novalidate>
+    {% csrf_token %}
+    <p id="hostname">主机名：{{ form.hostname }}{{ form.error.hostname.0 }}</p>
+    <p id="cpu">CPU：{{ form.cpu }}{{ form.error.cpu.0 }}</p>
+    <p id="mem">内存：{{ form.mem }}{{ form.error.mem.0 }}</p>
+    <p id="disk">带宽：{{ form.size }}{{ form.error.speed.0 }}</p>
+    <p id="ip">IP：{{ form.eth0_network }}{{ form.error.eth0_network.0 }}</p>
+{#    <p id="source">来源类型：{{ form.source_id }}{{ form.error.source_id.0 }}</p>#}
+
+    <input type="submit" class="add-host" value="添加">
+</form>
+
+</body>
+</html>

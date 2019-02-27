@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主机</title>
+</head>
+<body>
+<a href="/host/add.html">添加</a>
+<table border="0">
+    <tr>
+        <th></th>
+        <th>主机名</th>
+        <th>IP地址</th>
+        <th>CPU</th>
+        <th>内存</th>
+        <th>硬盘</th>
+        <th>系统</th>
+        <th>编辑</th>
+        <th>删除</th>
+    </tr>
+    {% for item in host_list %}
+        <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.hostname }}</td>
+        <td>{{ item.ip }}</td>
+        <td>{{ item.cpu }}</td>
+        <td>{{ item.mem }}</td>
+        <td>{{ item.disk__size }}</td>
+        <td>{{ item.os }}</td>
+        <td><a href="/host/edit/{{ item.id }}/">编辑</a> </td>
+        <td><a href="/host/del?id={{ item.id }}/">删除</a> </td>
+        </tr>
+    {% endfor %}
+<u1 class="pagination" id="pager">
+    <tr>
+        <th>
+            {% if host_list.has_previous %}
+                <li class="previous"><a href="/host/list.html/?page={{ host_list.previous_page_number }}">上一页</a> </li>
+             {% else %}
+                <li class="previous disabled">上一页 </li>
+            {% endif %}
+        </th>
+        {% for num in p.page_range %}
+            <th>
+            {% if num == page_num %}
+                <li class="item active">{{ num }} </li>
+{#                <li class="item active"><a href="/host/list.html/?page={{ num }}">{{ num }}</a> </li>#}
+            {% else %}
+                <li class="item"><a href="/host/list.html/?page={{ num }}">{{ num }}</a> </li>
+            {% endif %}
+            </th>
+        {% endfor %}
+         <th>
+             {% if host_list.has_next %}
+                 <li class="next"><a href="/host/list.html/?page={{ host_list.next_page_number }}">下一页</a> </li>
+             {% else %}
+                 <li class="next disabled">下一页 </li>
+             {% endif %}
+         </th>
+    </tr>
+</u1>
+</table>
+
+</body>
+</html>
